@@ -1,2 +1,2 @@
 language = "cpp"
-run = "make && ./SimplePayroll"
+run = "make && ./driver"
