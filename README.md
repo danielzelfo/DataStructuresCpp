@@ -6,4 +6,4 @@ the list was essentially a doubly linked list
 positions are obtained by the itertator class
 I also implemented a sequence with the functions indexOf and atIndex
 
-[![Run on Repl.it](https://repl.it/badge/github/danielzelfo/List-Data-Structure)](https://repl.it/github/danielzelfo/List-Data-Structure)
+[![Run on Repl.it](https://repl.it/badge/github/danielzelfo/ListDataStructure)](https://repl.it/github/danielzelfo/ListDataStructure)
