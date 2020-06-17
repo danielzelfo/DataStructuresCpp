@@ -11,7 +11,7 @@
 #include "ArrayVector/driver.h"
 #include "AVLTree/driver.h"
 #include "SearchTree/driver.h"
-//#include "List/driver.h"
+#include "List/driver.h"
 
 using namespace std;
 
@@ -64,7 +64,7 @@ int main()
             searchTreeMain();
             break;
 		case 10:
-            //listMain();
+            listMain();
             break;
         default:
             cout << "Invalid Option (" << option << ")\n";

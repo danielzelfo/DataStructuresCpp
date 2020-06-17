@@ -15,7 +15,7 @@ Exception(s): N/A
 #include <iostream>
 #include "Sequence.h"
 
-int main()
+void listMain()
 {
 	cout << "Author: Daniel Zelfo\nList v1.0\n\n";
 
@@ -113,6 +113,4 @@ int main()
 		List::Iterator curIt = mySeq.atIndex(i);
 		cout << mySeq.indexOf(curIt) << " : " << *curIt << endl;
 	}
-
-	return 0;
 }
