@@ -27,7 +27,7 @@
 
 using namespace std;
 
-int main()
+void hashTablesMain()
 {
 	int fn;
 	string filename;
@@ -53,12 +53,13 @@ int main()
 	}
 
 	if (fn == 1)
-		filename = "p1small.txt";
+		filename = "HashTables/p1small.txt";
 	else if(fn == 2)
-		filename = "p1large.txt";
+		filename = "HashTables/p1large.txt";
 	else {
 		cout << "Enter file name: ";
 		cin >> filename;
+		filename = "HashTables/" + filename;
 	}
 
 	cout << endl;
