@@ -21,7 +21,7 @@ using namespace std;
 
 void printSet(UnionFind<int>::Iterator);
 
-int main()
+void unionFindMain()
 {
 	UnionFind<int> uf;
 

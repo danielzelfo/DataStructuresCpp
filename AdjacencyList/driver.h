@@ -71,6 +71,4 @@ void adjacencyListMain()
 	cout << "Graph number two:" << endl;
 	g2.print();
 	cout << endl;
-
-	return 0;
 }

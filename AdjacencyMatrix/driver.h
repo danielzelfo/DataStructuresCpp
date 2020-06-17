@@ -71,5 +71,4 @@ void adjacencyMatrixMain()
 	cout << "Graph number two:" << endl;
 	g2.print();
 	cout << endl;
-	return 0;
 }
