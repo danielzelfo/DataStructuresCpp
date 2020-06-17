@@ -17,7 +17,7 @@
 #include <iostream>
 #include "StandardTrie.h"
 
-int main()
+void standardTrieMain()
 {
     string filepath;
     //words to be searched
@@ -28,6 +28,8 @@ int main()
 
     cout << "Enter filepath: ";
     cin >> filepath;
+	
+	filepath = "StandardTrie/"+filepath;
 
     //creating an object with the filepath parameter
     StandardTrie st(filepath);

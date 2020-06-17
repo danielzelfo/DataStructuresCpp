@@ -5,7 +5,7 @@
 #include "AdjacencyList/driver.h"
 #include "AdjacencyMatrix/driver.h"
 #include "UnionFind/driver.h"
-//#include "StandardTrie/driver.h"
+#include "StandardTrie/driver.h"
 //#include "HashTables/driver.h"
 //#include "QueueCircularArray/driver.h"
 //#include "ArrayVector/driver.h"
@@ -46,7 +46,7 @@ int main()
             unionFindMain();
             break;
         case 4:
-            //standardTrieMain();
+            standardTrieMain();
             break;
         case 5:
             //hashTablesMain();
