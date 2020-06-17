@@ -4,18 +4,18 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
-#include "Entry.h"
+#include "../Entry.h"
 
 using namespace std;
 
 template <typename K, typename V1, typename V2, typename H>
 class DoubleHashing {
 public:						// public types
-	typedef pair<V1, V2> V;
-	typedef Entry<K, V> Entry;			// a (key,value) pair
+	//typedef pair<V1, V2> V;
+	//typedef Entry<K, pair<V1, V2>><K, V> Entry<K, pair<V1, V2>>;			// a (key,value) pair
 
 protected:
-	typedef typename vector<Entry>::iterator Itor;
+	typedef typename vector<Entry<K, pair<V1, V2>>>::iterator Itor;
 
 public:						// public functions
 	DoubleHashing(float lFactor = 0.5, int capacity = 10);			// constructor
@@ -41,7 +41,7 @@ public:						// public functions
 protected:		    // bucket iterator
 
 	Itor finder(const K& k, bool countingProbes = false);			    // find utility
-	Itor inserter(const Itor& p, const Entry& e);   // insert utility
+	Itor inserter(const Itor& p, const Entry<K, pair<V1, V2>>& e);   // insert utility
 	void eraser(const Itor& p);			    // remove utility
 
 private:
@@ -60,7 +60,7 @@ private:
 	}
 	
 	//entry used to replace an erased entry
-	Entry removedEntry;
+	Entry<K, pair<V1, V2>> removedEntry;
 
 
 	float loadFactor;
@@ -71,7 +71,7 @@ private:
 
 	unsigned int n;						// number of entries
 	H hash;						// the hash comparator
-	vector<Entry> A;						// bucket array
+	vector<Entry<K, pair<V1, V2>>> A;						// bucket array
 
 
 	//double hashing data
@@ -147,7 +147,7 @@ template <typename K, typename V1, typename V2, typename H>
 typename DoubleHashing<K, V1, V2, H>::Itor DoubleHashing<K, V1, V2, H>::begin() {
 	if (empty()) return end();				// emtpty - return end
 	Itor bkt = A.begin();				// else search for an entry
-	while (*bkt == Entry() || *bkt == removedEntry) ++bkt;				// find nonempty bucket
+	while (*bkt == Entry<K, pair<V1, V2>>() || *bkt == removedEntry) ++bkt;				// find nonempty bucket
 	return bkt;		// return first of bucket
 }
 // iterator to end
@@ -186,7 +186,7 @@ typename DoubleHashing<K, V1, V2, H>::Itor DoubleHashing<K, V1, V2, H>::finder(c
 	Itor it = A.begin() + i;
 
 
-	while (!(*it == Entry()) && probes < A.size()) {
+	while (!(*it == Entry<K, pair<V1, V2>>()) && probes < A.size()) {
 
 		if ((*it).key() == k) {
 
@@ -231,7 +231,7 @@ typename DoubleHashing<K, V1, V2, H>::Itor DoubleHashing<K, V1, V2, H>::put(cons
 	while (probes < A.size()) {
 
 		//if the entry is empty or has the key of the entry that will be inserted
-		if (*it == Entry() || *it == removedEntry || (*it).key() == k) {
+		if (*it == Entry<K, pair<V1, V2>>() || *it == removedEntry || (*it).key() == k) {
 			if ((*it).key() != k) n++;
 
 			if (countingProbes) {
@@ -240,7 +240,7 @@ typename DoubleHashing<K, V1, V2, H>::Itor DoubleHashing<K, V1, V2, H>::put(cons
 					maxProbes = probes + 1;
 			}
 
-			return inserter(it, Entry(k, v));
+			return inserter(it, Entry<K, pair<V1, V2>>(k, v));
 		}
 
 		i = (i + inc) % A.size();
@@ -258,7 +258,7 @@ typename DoubleHashing<K, V1, V2, H>::Itor DoubleHashing<K, V1, V2, H>::put(cons
 }
 // insert utility
 template <typename K, typename V1, typename V2, typename H>
-typename DoubleHashing<K, V1, V2, H>::Itor DoubleHashing<K, V1, V2, H>::inserter(const Itor& p, const Entry& e) {
+typename DoubleHashing<K, V1, V2, H>::Itor DoubleHashing<K, V1, V2, H>::inserter(const Itor& p, const Entry<K, pair<V1, V2>>& e) {
 
 
 	*p = e;
@@ -298,12 +298,12 @@ void DoubleHashing<K, V1, V2, H>::erase(const K& k, bool displayProbes) {
 
 template <typename K, typename V1, typename V2, typename H>
 void DoubleHashing<K, V1, V2, H>::resize(int newSize) {
-	vector<Entry> oldB;
+	vector<Entry<K, pair<V1, V2>>> oldB;
 	int i = 0;
 	Itor it = begin();
 
 	while (i < size()) {
-		if (!(*it == Entry())) {
+		if (!(*it == Entry<K, pair<V1, V2>>())) {
 			oldB.push_back(*it);
 			++i;
 		}
@@ -332,7 +332,7 @@ void DoubleHashing<K, V1, V2, H>::list() {
 	int i = 0;
 	//traversing through hash map
 	while (i < size()) {
-		if (!(*cur == Entry())) {
+		if (!(*cur == Entry<K, pair<V1, V2>>())) {
 			cout << (*cur).key() << " " << (*cur).value().first << " " << (*cur).value().second << endl;
 			++i;
 		}

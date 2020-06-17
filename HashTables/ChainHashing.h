@@ -8,15 +8,15 @@
 #include <fstream>
 #include <sstream>
 
-#include "Entry.h"
+#include "../Entry.h"
 
 using namespace std;
 
 template <typename K, typename V1, typename V2, typename H>
 class ChainHashing {
 public:						// public types
-	typedef pair<V1, V2> V;
-	typedef Entry<const K, V> Entry;			// a (key,value) pair
+	//typedef pair<V1, V2> V;
+	//typedef Entry<K, V> Entry;			// a (key,value) pair
 	class Iterator;					// a iterator/position
 public:						// public functions
 	ChainHashing(float lFactor = 0.5, int capacity = 10);			// constructor
@@ -24,12 +24,12 @@ public:						// public functions
 
 	int size() const;					// number of entries
 	bool empty() const;					// is the map empty?
-	Iterator find(const K& k, bool displayProbes = false);				// find entry with key k
+	Iterator find(const K& k, bool displayProbes = false);				// find Entry<K, pair<V1, V2>> with key k
 	Iterator put(const K& k, const V1& v1, const V2& v2, bool countingProbes = false);		// insert/replace (k,v)
-	void erase(const K& k, bool displayProbes = false);				// remove entry with key k
-	void erase(const Iterator& p);			// erase entry at p
-	Iterator begin();					// iterator to first entry
-	Iterator end();					// iterator to end entry
+	void erase(const K& k, bool displayProbes = false);				// remove Entry<K, pair<V1, V2>> with key k
+	void erase(const Iterator& p);			// erase Entry<K, pair<V1, V2>> at p
+	Iterator begin();					// iterator to first Entry<K, pair<V1, V2>>
+	Iterator end();					// iterator to end Entry<K, pair<V1, V2>>
 
 	void list();
 	void menu();
@@ -38,14 +38,14 @@ public:						// public functions
 
 protected:						// protected types
 
-	typedef std::list<Entry> Bucket;			// a bucket of entries
+	typedef std::list<Entry<K, pair<V1, V2>>> Bucket;			// a bucket of entries
 	typedef std::vector<Bucket> BktArray;		// a bucket array
 	Iterator finder(const K& k, bool countingProbes = false);			    // find utility
-	Iterator inserter(const Iterator& p, const Entry& e);   // insert utility
+	Iterator inserter(const Iterator& p, const Entry<K, pair<V1, V2>>& e);   // insert utility
 	void eraser(const Iterator& p);			    // remove utility
 	typedef typename BktArray::iterator BItor;		    // bucket iterator
-	typedef typename Bucket::iterator EItor;		    // entry iterator
-	static void nextEntry(Iterator& p)			    // bucket's next entry
+	typedef typename Bucket::iterator EItor;		    // Entry<K, pair<V1, V2>> iterator
+	static void nextEntry(Iterator& p)			    // bucket's next Entry<K, pair<V1, V2>>
 	{
 		++p.ent;
 	}
@@ -67,19 +67,19 @@ private:
 public:						// public types
 	class Iterator {	                      		// an iterator (& position)
 	private:
-		EItor ent;					// which entry
+		EItor ent;					// which Entry<K, pair<V1, V2>>
 		BItor bkt;					// which bucket
 		const BktArray* ba;				// which bucket array
 	public:
 		Iterator(const BktArray& a, const BItor& b, const EItor& q = EItor())
 			: ent(q), bkt(b), ba(&a) { }
-		Entry& operator*() const;				// get entry
+		Entry<K, pair<V1, V2>>& operator*() const;				// get Entry<K, pair<V1, V2>>
 		bool operator==(const Iterator& p) const;		// are iterators equal?
-		Iterator& operator++();				// advance to next entry
+		Iterator& operator++();				// advance to next Entry<K, pair<V1, V2>>
 
 
 		K getKey() const;
-		V getValue() const;
+		pair<V1, V2> getValue() const;
 
 
 		friend class ChainHashing;				// give ChainHashing access
@@ -97,7 +97,7 @@ typename ChainHashing<K, V1, V2, H>::Iterator ChainHashing<K, V1, V2, H>::end()
 template <typename K, typename V1, typename V2, typename H>		// iterator to front
 typename ChainHashing<K, V1, V2, H>::Iterator ChainHashing<K, V1, V2, H>::begin() {
 	if (empty()) return end();				// emtpty - return end
-	BItor bkt = B.begin();				// else search for an entry
+	BItor bkt = B.begin();				// else search for an Entry<K, pair<V1, V2>>
 	while (bkt->empty()) ++bkt;				// find nonempty bucket
 	return Iterator(B, bkt, bkt->begin());		// return first of bucket
 }
@@ -105,17 +105,17 @@ typename ChainHashing<K, V1, V2, H>::Iterator ChainHashing<K, V1, V2, H>::begin(
 
 template <typename K, typename V1, typename V2, typename H>		// remove utility
 void ChainHashing<K, V1, V2, H>::eraser(const Iterator& p) {
-	p.bkt->erase(p.ent);				// remove entry from bucket
-	n--;						// one fewer entry
+	p.bkt->erase(p.ent);				// remove Entry<K, pair<V1, V2>> from bucket
+	n--;						// one fewer Entry<K, pair<V1, V2>>
 }
 
-template <typename K, typename V1, typename V2, typename H>		// remove entry at p
+template <typename K, typename V1, typename V2, typename H>		// remove Entry<K, pair<V1, V2>> at p
 void ChainHashing<K, V1, V2, H>::erase(const Iterator& p)
 {
 	eraser(p);
 }
 
-template <typename K, typename V1, typename V2, typename H>		// remove entry with key k
+template <typename K, typename V1, typename V2, typename H>		// remove Entry<K, pair<V1, V2>> with key k
 void ChainHashing<K, V1, V2, H>::erase(const K& k, bool displayProbes) {
 	if (displayProbes)
 		probesCounter = 0;
@@ -170,42 +170,42 @@ template <typename K, typename V1, typename V2, typename H>		// are iterators eq
 bool ChainHashing<K, V1, V2, H>::Iterator::operator==(const Iterator& p) const {
 	if (ba != p.ba || bkt != p.bkt) return false;	// ba or bkt differ?
 	else if (bkt == ba->end()) return true;		// both at the end?
-	else return (ent == p.ent);				// else use entry to decide
+	else return (ent == p.ent);				// else use Entry<K, pair<V1, V2>> to decide
 }
 
-template <typename K, typename V1, typename V2, typename H>		// advance to next entry
+template <typename K, typename V1, typename V2, typename H>		// advance to next Entry<K, pair<V1, V2>>
 typename ChainHashing<K, V1, V2, H>::Iterator& ChainHashing<K, V1, V2, H>::Iterator::operator++() {
-	++ent;						// next entry in bucket
+	++ent;						// next Entry<K, pair<V1, V2>> in bucket
 	if (endOfBkt(*this)) {				// at end of bucket?
 		++bkt;						// go to next bucket
 		while (bkt != ba->end() && bkt->empty())		// find nonempty bucket
 			++bkt;
 		if (bkt == ba->end()) return *this;		// end of bucket array?
-		ent = bkt->begin();				// first nonempty entry
+		ent = bkt->begin();				// first nonempty Entry<K, pair<V1, V2>>
 	}
 	return *this;					// return self
 }
 
-template <typename K, typename V1, typename V2, typename H>		// get entry
-typename ChainHashing<K, V1, V2, H>::Entry& ChainHashing<K, V1, V2, H>::Iterator::operator*() const
+template <typename K, typename V1, typename V2, typename H>		// get Entry<K, pair<V1, V2>>
+Entry<K, pair<V1, V2>>& ChainHashing<K, V1, V2, H>::Iterator::operator*() const
 {
 	return *ent;
 }
 
-template <typename K, typename V1, typename V2, typename H>		// get entry
-typename K ChainHashing<K, V1, V2, H>::Iterator::getKey() const
+template <typename K, typename V1, typename V2, typename H>		// get Entry<K, pair<V1, V2>>
+K ChainHashing<K, V1, V2, H>::Iterator::getKey() const
 {
 	return (*ent).key();
 }
 
-template <typename K, typename V1, typename V2, typename H>		// get entry
-typename ChainHashing<K, V1, V2, H>::V ChainHashing<K, V1, V2, H>::Iterator::getValue() const
+template <typename K, typename V1, typename V2, typename H>		// get Entry<K, pair<V1, V2>>
+pair<V1, V2> ChainHashing<K, V1, V2, H>::Iterator::getValue() const
 {
 	return (*ent).value();
 }
 
 template <typename K, typename V1, typename V2, typename H>		// insert utility
-typename ChainHashing<K, V1, V2, H>::Iterator ChainHashing<K, V1, V2, H>::inserter(const Iterator& p, const Entry& e) {
+typename ChainHashing<K, V1, V2, H>::Iterator ChainHashing<K, V1, V2, H>::inserter(const Iterator& p, const Entry<K, pair<V1, V2>>& e) {
 	EItor ins = p.bkt->insert(p.ent, e);		// insert before p
 	return Iterator(B, p.bkt, ins);			// return this position
 }
@@ -222,7 +222,7 @@ typename ChainHashing<K, V1, V2, H>::Iterator ChainHashing<K, V1, V2, H>::put(co
 	Iterator p = finder(k, countingProbes);				// search for k
 	if (endOfBkt(p)) {					// k not found?
 		++n;
-		return inserter(p, Entry(k, v));			// insert at end of bucket
+		return inserter(p, Entry<K, pair<V1, V2>>(k, v));			// insert at end of bucket
 		
 	}
 	else {						// found it?
@@ -290,7 +290,7 @@ bool ChainHashing<K, V1, V2, H>::empty() const { return size() == 0; }
 
 template <typename K, typename V1, typename V2, typename H>
 void ChainHashing<K, V1, V2, H>::resize(int newSize) {
-	vector<Entry> oldB;
+	vector<Entry<K, pair<V1, V2>>> oldB;
 	int i = 0;
 	Iterator it = begin();
 

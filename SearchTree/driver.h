@@ -7,7 +7,7 @@ SearchTree Data Structure By Daniel Zelfo
 */
 
 #include "SearchTree.h"
-#include "Entry.h"
+#include "../Entry.h"
 
 using namespace std;
 

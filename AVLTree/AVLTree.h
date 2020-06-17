@@ -1,9 +1,9 @@
 #ifndef AVLTree_H
 #define AVLTree_H
 
-#include "SearchTree.h"
+#include "../SearchTree/SearchTree.h"
 #include "AVLEntry.h"
-#include "Entry.h"
+#include "../Entry.h"
 #include <utility>
 #include <fstream>
 #include <sstream>
@@ -13,16 +13,17 @@
 
 using namespace std;
 
-
-typedef Entry<int, pair<int, string>> E;
+typedef int Key;
+typedef pair<int, string> Value;
+typedef Entry<Key, Value> E;
 
 class AVLTree : public SearchTree< AVLEntry<E> > {
 
 public:						// public types
-	typedef AVLEntry<E> AVLEntry;			// an entry
-	typedef typename SearchTree<AVLEntry>::Iterator Iterator; // an iterator
+	//typedef AVLEntry<E> AVLEntry;			// an entry
+	typedef typename SearchTree<AVLEntry<E>>::Iterator Iterator; // an iterator
 protected:
-	typedef SearchTree<AVLEntry> ST;			// a search tree
+	typedef SearchTree<AVLEntry<E>> ST;			// a search tree
 	typedef typename ST::TPos TPos;			// a tree position
 
 
@@ -45,11 +46,11 @@ public:						// public functions
 	void menu();
 
 	
-	auto find(const K& k)->SearchTree<AVLEntry>::Iterator;
+	auto find(const Key& k)->SearchTree<AVLEntry<E>>::Iterator;
 
 protected:						// utility functions 
 	auto inserter(const int& k, const pair<int, string>& x)->TPos;
-	auto finder(const K& k, const TPos& v, int& numExamined)->TPos;
+	auto finder(const Key& k, const TPos& v, int& numExamined)->TPos;
 	int height(const TPos&) const;			// node height utility
 	void setHeight(TPos);				// set height utility
 	bool isBalanced(const TPos&) const;		// is v balanced?
@@ -123,7 +124,7 @@ void AVLTree::erase(const int& k) {// throw(NonexistentElement) {
 	TPos v = finder(k, root(), numExamined);						// search from virtual root
 
 	if (v.isExternal())								// not found?
-		throw NonexistentElement("Erase of nonexistent");
+		throw string("Erase of nonexistent");
 	//else
 		//cout << "Found." << endl;
 	TPos w = eraser(v);
@@ -418,8 +419,11 @@ void AVLTree::menu() {
 				erase(code);
 				cout << "Record removed." << endl;
 			}
-			catch (NonexistentElement e) {
-				cout << e.what() << endl;
+      catch (string e) {
+				cout << e << endl;
+			}
+			catch (...) {
+				cout << "There was an error" << endl;
 			}
 			cout << numExamined << " records examined." << endl;
 		}
@@ -438,7 +442,7 @@ void AVLTree::menu() {
 }
 
 //finder that increments the number of nodes examined
-auto AVLTree::finder(const K& k, const TPos& v, int& numExamined) -> TPos {
+auto AVLTree::finder(const Key& k, const TPos& v, int& numExamined) -> TPos {
 	++numExamined;
 	if (v.isExternal()) return v;
 	if (k < (*v).key()) return finder(k, v.left(), numExamined);
@@ -447,7 +451,7 @@ auto AVLTree::finder(const K& k, const TPos& v, int& numExamined) -> TPos {
 }
 
 //find that resets the number of examined
-auto AVLTree::find(const K& k) -> SearchTree<AVLEntry>::Iterator {
+auto AVLTree::find(const Key& k) -> SearchTree<AVLEntry<E>>::Iterator {
 	numExamined = 0;
 	TPos v = finder(k, root(), numExamined); //uses finder function
 	if (!v.isExternal()) return Iterator(v);

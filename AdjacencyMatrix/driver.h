@@ -17,7 +17,6 @@
 #include <iostream>
 #include <string>
 #include "AdjacencyMatrixGraph.h"
-#include "Graph.h"
 
 using namespace std;
 
@@ -34,13 +33,13 @@ void adjacencyMatrixMain()
 	*/
 
 	//inserting vertices A, B, C
-	Vertex* v11 = g1.insertVertex("A");
-	Vertex* v12 = g1.insertVertex("B");
-	Vertex* v13 = g1.insertVertex("C");
+	Vertex<string>* v11 = g1.insertVertex("A");
+	Vertex<string>* v12 = g1.insertVertex("B");
+	Vertex<string>* v13 = g1.insertVertex("C");
 
 	//inserting edges
-	Edge* e11 = g1.insertEdge(v11, v12, 100);
-	Edge* e12 = g1.insertEdge(v11, v13, 200);
+	Edge<int>* e11 = g1.insertEdge(v11, v12, 100);
+	Edge<int>* e12 = g1.insertEdge(v11, v13, 200);
 
 	//printing graph 1
 	cout << "Graph number 1:" << endl;
@@ -54,18 +53,18 @@ void adjacencyMatrixMain()
 	*/
 
 	//inserting vertices A,B,C,D
-	Vertex* v21 = g2.insertVertex("A");
-	Vertex* v22 = g2.insertVertex("B");
-	Vertex* v23 = g2.insertVertex("C");
-	Vertex* v24 = g2.insertVertex("D");
+	Vertex<string>* v21 = g2.insertVertex("A");
+	Vertex<string>* v22 = g2.insertVertex("B");
+	Vertex<string>* v23 = g2.insertVertex("C");
+	Vertex<string>* v24 = g2.insertVertex("D");
 
 	//inserting edges
-	Edge* e21 = g2.insertEdge(v21, v22, 100);
-	Edge* e22 = g2.insertEdge(v22, v23, 100);
-	Edge* e23 = g2.insertEdge(v23, v24, 100);
-	Edge* e24 = g2.insertEdge(v24, v21, 100);
-	Edge* e25 = g2.insertEdge(v21, v23, 140);
-	Edge* e26 = g2.insertEdge(v22, v24, 150);
+	Edge<int>* e21 = g2.insertEdge(v21, v22, 100);
+	Edge<int>* e22 = g2.insertEdge(v22, v23, 100);
+	Edge<int>* e23 = g2.insertEdge(v23, v24, 100);
+	Edge<int>* e24 = g2.insertEdge(v24, v21, 100);
+	Edge<int>* e25 = g2.insertEdge(v21, v23, 140);
+	Edge<int>* e26 = g2.insertEdge(v22, v24, 150);
 
 	//printing graph 2
 	cout << "Graph number two:" << endl;

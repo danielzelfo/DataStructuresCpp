@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include <vector>
 #include <list>
 #include <string>
@@ -18,7 +17,7 @@ public:
 };
 
 template <typename E>
-class Edge			// behaves like interface in Java
+class Edge		// behaves like interface in Java
 {
 public:
 	virtual E getElement() = 0;
@@ -35,13 +34,12 @@ public:
 	virtual int numEdges() = 0;
 
 	/* Returns the vertices of the graph as an iterable collection */
-	virtual list<Vertex<V>*> getVertices() = 0;
+	virtual list<Vertex<V>*> getVertices() =0;
 
 	/* Returns the edges of the graph as an iterable collection */
-	virtual list<Edge<E>*> getEdges() = 0;
+	virtual list<Edge<E>*> getEdges() =0;
 
-	/*
-	* Returns the number of edges leaving vertex v.
+	/* Returns the number of edges leaving vertex v.
 	* returned by inDegree
 	* throws IllegalArgumentException if v is not a valid vertex?
 	*/
@@ -90,4 +88,3 @@ public:
 	virtual void removeEdge(Edge<E>* e) = 0; // throws IllegalArgumentException;
 
 };
-

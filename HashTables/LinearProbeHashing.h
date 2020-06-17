@@ -1,22 +1,19 @@
-
-
-
 #pragma once
 
 #include <string>
 #include <vector>
-#include "Entry.h"
+#include "../Entry.h"
 
 using namespace std;
 
 template <typename K, typename V1, typename V2, typename H>
 class LinearProbeHashing {
 public:						// public types
-	typedef pair<V1, V2> V;
-	typedef Entry<K, V> Entry;			// a (key,value) pair
+	//typedef pair<V1, V2> V;
+	//typedef Entry<K, V> Entry;			// a (key,value) pair
 
 protected:
-	typedef typename vector<Entry>::iterator Itor;
+	typedef typename vector<Entry<K, pair<V1, V2>>>::iterator Itor;
 
 public:						// public functions
 	LinearProbeHashing(float lFactor = 0.5, int capacity = 10);			// constructor
@@ -42,12 +39,12 @@ public:						// public functions
 protected:		    // bucket iterator
 
 	Itor finder(const K& k, bool countingProbes = false);			    // find utility
-	Itor inserter(const Itor& p, const Entry& e);   // insert utility
+	Itor inserter(const Itor& p, const Entry<K, pair<V1, V2>>& e);   // insert utility
 	void eraser(const Itor& p);			    // remove utility
 
 private:
 	//an entry used to replace entries that are erased
-	Entry removedEntry;
+	Entry<K, pair<V1, V2>> removedEntry;
 
 	float loadFactor;
 
@@ -57,7 +54,7 @@ private:
 
 	int n;						// number of entries
 	H hash;						// the hash comparator
-	vector<Entry> A;						// bucket array
+	vector<Entry<K, pair<V1, V2>>> A;						// bucket array
 };
 
 
@@ -115,7 +112,7 @@ template <typename K, typename V1, typename V2, typename H>
 typename LinearProbeHashing<K, V1, V2, H>::Itor LinearProbeHashing<K, V1, V2, H>::begin() {
 	if (empty()) return end();				// emtpty - return end
 	Itor bkt = A.begin();				// else search for an entry
-	while (*bkt == Entry() || *bkt == removedEntry) ++bkt;				// find nonempty bucket
+	while (*bkt == Entry<K, pair<V1, V2>>() || *bkt == removedEntry) ++bkt;				// find nonempty bucket
 	return bkt;		// return first of bucket
 }
 // iterator to end
@@ -155,7 +152,7 @@ typename LinearProbeHashing<K, V1, V2, H>::Itor LinearProbeHashing<K, V1, V2, H>
 	Itor it = A.begin() + i;
 
 
-	while (!(*it == Entry()) && probes < A.size()) {
+	while (!(*it == Entry<K, pair<V1, V2>>()) && probes < A.size()) {
 
 		if ((*it).key() == k) {
 
@@ -197,7 +194,7 @@ typename LinearProbeHashing<K, V1, V2, H>::Itor LinearProbeHashing<K, V1, V2, H>
 	while (probes < A.size()) {
 
 		//if the entry is empty or has the key that we want to insert
-		if (*it == Entry() || *it == removedEntry || (*it).key() == k) {
+		if (*it == Entry<K, pair<V1, V2>>() || *it == removedEntry || (*it).key() == k) {
 			if ((*it).key() != k) n++;
 
 
@@ -207,7 +204,7 @@ typename LinearProbeHashing<K, V1, V2, H>::Itor LinearProbeHashing<K, V1, V2, H>
 					maxProbes = probes + 1;
 			}
 
-			return inserter(it, Entry(k, v));
+			return inserter(it, Entry<K, pair<V1, V2>>(k, v));
 		}
 
 		i = (i + 1) % A.size();
@@ -225,7 +222,7 @@ typename LinearProbeHashing<K, V1, V2, H>::Itor LinearProbeHashing<K, V1, V2, H>
 }
 // insert utility
 template <typename K, typename V1, typename V2, typename H>
-typename LinearProbeHashing<K, V1, V2, H>::Itor LinearProbeHashing<K, V1, V2, H>::inserter(const Itor& p, const Entry& e) {
+typename LinearProbeHashing<K, V1, V2, H>::Itor LinearProbeHashing<K, V1, V2, H>::inserter(const Itor& p, const Entry<K, pair<V1, V2>>& e) {
 
 
 	*p = e;
@@ -267,12 +264,12 @@ void LinearProbeHashing<K, V1, V2, H>::erase(const K& k, bool displayProbes) {
 
 template <typename K, typename V1, typename V2, typename H>
 void LinearProbeHashing<K, V1, V2, H>::resize(int newSize) {
-	vector<Entry> oldB;
+	vector<Entry<K, pair<V1, V2>>> oldB;
 	int i = 0;
 	Itor it = begin();
 
 	while (i < size()) {
-		if (!(*it == Entry())) {
+		if (!(*it == Entry<K, pair<V1, V2>>())) {
 			oldB.push_back(*it);
 			++i;
 		}
@@ -296,7 +293,7 @@ void LinearProbeHashing<K, V1, V2, H>::list() {
 	int i = 0;
 	//traversing through hash map
 	while (i < size()) {
-		if (!(*cur == Entry())) {
+		if (!(*cur == Entry<K, pair<V1, V2>>())) {
 			cout << (*cur).key() << " " << (*cur).value().first << " " << (*cur).value().second << endl;
 			++i;
 		}
