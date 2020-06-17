@@ -17,7 +17,7 @@
 
 using namespace std;
 
-int main()
+void arrayVectorMain()
 {
     //creating a new vector with max size 50
 	ArrayVector<int> vect(50);
