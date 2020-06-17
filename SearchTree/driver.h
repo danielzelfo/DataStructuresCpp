@@ -11,7 +11,7 @@ SearchTree Data Structure By Daniel Zelfo
 
 using namespace std;
 
-int main()
+void searchTreeMain()
 {
 	SearchTree<Entry<int, string>> tree;
 

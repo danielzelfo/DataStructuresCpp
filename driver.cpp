@@ -10,7 +10,7 @@
 #include "QueueCircularArray/driver.h"
 #include "ArrayVector/driver.h"
 #include "AVLTree/driver.h"
-//#include "SearchTree/driver.h"
+#include "SearchTree/driver.h"
 //#include "List/driver.h"
 
 using namespace std;
@@ -61,7 +61,7 @@ int main()
             avlTreeMain();
             break;
 		case 9:
-            //searchTreeMain();
+            searchTreeMain();
             break;
 		case 10:
             //listMain();
