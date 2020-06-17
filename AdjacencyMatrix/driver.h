@@ -22,7 +22,7 @@
 using namespace std;
 
 
-int main()
+void adjacencyMatrixMain()
 {
 	AdjacencyMatrixGraph g1, g2(true);
 

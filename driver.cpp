@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "AdjacencyList/driver.h"
-//#include "AdjacencyMatrix/driver.h"
+#include "AdjacencyMatrix/driver.h"
 //#include "UnionFind/driver.h"
 //#include "StandardTrie/driver.h"
 //#include "HashTables/driver.h"
@@ -40,7 +40,7 @@ int main()
             adjacencyListMain();
             break;
         case 2:
-            //adjacencyMatrixMain();
+            adjacencyMatrixMain();
             break;
         case 3:
             //unionFindMain();
