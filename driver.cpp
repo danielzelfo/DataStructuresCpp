@@ -7,7 +7,7 @@
 #include "UnionFind/driver.h"
 #include "StandardTrie/driver.h"
 #include "HashTables/driver.h"
-//#include "QueueCircularArray/driver.h"
+#include "QueueCircularArray/driver.h"
 //#include "ArrayVector/driver.h"
 //#include "AVLTree/driver.h"
 //#include "SearchTree/driver.h"
@@ -52,7 +52,7 @@ int main()
             hashTablesMain();
             break;
         case 6:
-            //queueCircularArrayMain();
+            queueCircularArrayMain();
             break;
         case 7:
             //arrayVectorMain();

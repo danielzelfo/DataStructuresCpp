@@ -14,7 +14,7 @@
 #include <iostream>
 #include "Queue.h"
 
-int main()
+void queueCircularArrayMain()
 {
 
 	//creating a queue object
