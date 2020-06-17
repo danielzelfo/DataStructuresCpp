@@ -2,7 +2,7 @@
 //
 
 #include <iostream>
-//#include "AdjacencyList/driver.h"
+#include "AdjacencyList/driver.h"
 //#include "AdjacencyMatrix/driver.h"
 //#include "UnionFind/driver.h"
 //#include "StandardTrie/driver.h"
@@ -37,7 +37,7 @@ int main()
     while (option != 0) {
         switch (option) {
         case 1:
-            //adjacencyListMain();
+            adjacencyListMain();
             break;
         case 2:
             //adjacencyMatrixMain();

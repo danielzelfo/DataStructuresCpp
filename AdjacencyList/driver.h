@@ -22,7 +22,7 @@ using namespace std;
 // A simple driver to test AdjacencyMapGraph class
 // Created by T. Vo for CSCI 230
 
-int main()
+void adjacencyListMain()
 {
 	AdjacencyListGraph<string, int> g1, g2(true);
 	
