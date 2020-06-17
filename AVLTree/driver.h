@@ -17,9 +17,9 @@
 #include "AVLTree.h"
 
 
-int main()
+void avlTreeMain()
 {
 	cout << "Calfifornia Counties Population Database Program" << endl << "Author: Daniel Zelfo" << endl;
-	AVLTree population;// ("P4Medium.txt");
+	AVLTree population("AVLTree/P4Medium.txt");
 	population.menu();
 }

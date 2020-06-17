@@ -9,7 +9,7 @@
 #include "HashTables/driver.h"
 #include "QueueCircularArray/driver.h"
 #include "ArrayVector/driver.h"
-//#include "AVLTree/driver.h"
+#include "AVLTree/driver.h"
 //#include "SearchTree/driver.h"
 //#include "List/driver.h"
 
@@ -58,7 +58,7 @@ int main()
             arrayVectorMain();
             break;
         case 8:
-            //avlTreeMain();
+            avlTreeMain();
             break;
 		case 9:
             //searchTreeMain();
