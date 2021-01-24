@@ -2,7 +2,7 @@
 
 SearchTree Data Structure By Daniel Zelfo
 
-
+with functions find, insert, erase, and more.
 
 */
 

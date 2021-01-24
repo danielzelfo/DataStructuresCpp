@@ -3,7 +3,7 @@
  *	Class: CSCI 220
  *	Date: 10/7/2019
  *	Description: This program implements a vector using an extendable array.
- *				 Member functions of the ArrayVector class include: size, maxSize, empty, resize, append, eraseAt, eraseLast, and print
+ *				 Member functions of the ArrayVector class include size, maxSize, empty, resize, append, eraseAt, eraseLast, and print.
  *
  *	I certify that the code below is my own work.
  *

@@ -2,10 +2,10 @@
 Author: Daniel Zelfo
 Class: CSCI 220
 Date: 10/16/2019
-Description: This program implements a List. functions include inserting and erasing at any given position
-				the list was essentially a doubly linked list
-				positions are obtained by the itertator class
-			v1.1: I implemented a sequence with the functions indexOf and atIndex
+Description: 
+			This program implements a List. The functions include insert and erase at any given position.
+			The list is essentially a doubly linked list, and its positions are obtained by the Iterator class.
+			v1.1: I also implemented a Sequence with the functions indexOf and atIndex.
 
 I certify that the code below is my own work.
 

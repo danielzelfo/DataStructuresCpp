@@ -2,8 +2,8 @@
  *	Author: Daniel Zelfo
  *	Class: CSCI 220
  *	Date: 9/30/2019
- *	Description: This program includes the Queue class, which implements a queue using an circular array
- *				 The Queue class incldues the member functions: enqueue(), dequeue(), size(), and front()
+ *	Description: This program includes the Queue class, which implements a queue using an circular array.
+ *				 The Queue class includes the member functions enqueue(), dequeue(), size(), and front().
  *
  *	I certify that the code below is my own work.
  *

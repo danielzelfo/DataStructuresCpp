@@ -2,10 +2,10 @@
  *	Author: Daniel Zelfo
  *	Class: CSCI 230
  *	Date: 4/13/2020
- *	Description: This program includes the UnionFind class, which represents a Disjoint Set
- *               It has the operations makeset, union, and find
- *               makeset creates a new set in the structure with the given element
- *				 union joins together the two sets given, and find returns the set with the given element
+ *	Description: This program includes the UnionFind class, which represents a Disjoint Set.
+ *               It has the operations makeset, union, and find.
+ *               makeset creates a new set in the structure with the given element. 
+ *				 union joins together the two sets given, and find returns the set with the given element.
  * 
  * I certify that the code below is my own work.
  *

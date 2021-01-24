@@ -2,11 +2,11 @@
  *	Author: Daniel Zelfo
  *	Class: CSCI 230
  *	Date: 3/23/2020
- *	Description: This program is made up of three different hash table classes, which use three diferent hashing schemes: Chain Hashing, Linear Probe Hashing, and Double Hashing
- *				 Each class can be constructed using an input file and can take a load factor to use
- *				 The hash tables the Hasher class to generate a hash code for any given key
- *				 Each record is stored in an Entry
- *				 The user can search, insert, and erase records in O(1) using these hash tables
+ *	Description: This program is made up of three different hash table classes, which use three different hashing schemes: Chain Hashing, Linear Probe Hashing, and Double Hashing.
+ *				 Each class can be constructed using an input file and can take a load factor to use.
+ *				 The hash tables use the Hasher class to generate a hash code for any given key.
+ *				 Each record is stored in an Entry.
+ *				 The user can search, insert, and erase records in O(1) using these hash tables.
  *
  *
  I certify that the code below is my own work.
