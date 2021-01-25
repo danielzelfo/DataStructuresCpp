@@ -8,7 +8,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "../Entry.h"
+#include "../Entry.hpp"
 
 using namespace std;
 

@@ -12,7 +12,7 @@
  */
 
 #include <iostream>
-#include "Queue.h"
+#include "Queue.hpp"
 
 void queueCircularArrayMain()
 {

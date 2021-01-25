@@ -15,7 +15,7 @@
  */
 
 #include <iostream>
-#include "StandardTrie.h"
+#include "StandardTrie.hpp"
 
 void standardTrieMain()
 {

@@ -14,7 +14,7 @@
  */
 
 #include <iostream>
-#include "AVLTree.h"
+#include "AVLTree.hpp"
 
 
 void avlTreeMain()

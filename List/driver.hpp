@@ -13,7 +13,7 @@ Exception(s): N/A
 
 */
 #include <iostream>
-#include "Sequence.h"
+#include "Sequence.hpp"
 
 void listMain()
 {

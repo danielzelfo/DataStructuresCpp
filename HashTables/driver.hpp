@@ -18,11 +18,11 @@
 #include <iostream>
 #include <string>
 
-#include "ChainHashing.h"
-#include "LinearProbeHashing.h"
-#include "DoubleHashing.h"
+#include "ChainHashing.hpp"
+#include "LinearProbeHashing.hpp"
+#include "DoubleHashing.hpp"
 
-#include "Hash.h"
+#include "Hash.hpp"
 
 
 using namespace std;

@@ -15,7 +15,7 @@
 
 #include <iostream>
 
-#include "UnionFind.h"
+#include "UnionFind.hpp"
 
 using namespace std;
 

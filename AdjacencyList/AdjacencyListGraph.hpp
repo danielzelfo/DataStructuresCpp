@@ -2,7 +2,7 @@
 #include <iostream>
 #include <list>
 #include <vector>
-#include "../Graph.h"
+#include "../Graph.hpp"
 
 using namespace std;
 

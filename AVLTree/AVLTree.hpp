@@ -1,9 +1,9 @@
 #ifndef AVLTree_H
 #define AVLTree_H
 
-#include "../SearchTree/SearchTree.h"
-#include "AVLEntry.h"
-#include "../Entry.h"
+#include "../SearchTree/SearchTree.hpp"
+#include "AVLEntry.hpp"
+#include "../Entry.hpp"
 #include <utility>
 #include <fstream>
 #include <sstream>

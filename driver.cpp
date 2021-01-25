@@ -2,16 +2,16 @@
 //
 
 #include <iostream>
-#include "AdjacencyList/driver.h"
-#include "AdjacencyMatrix/driver.h"
-#include "UnionFind/driver.h"
-#include "StandardTrie/driver.h"
-#include "HashTables/driver.h"
-#include "QueueCircularArray/driver.h"
-#include "ArrayVector/driver.h"
-#include "AVLTree/driver.h"
-#include "SearchTree/driver.h"
-#include "List/driver.h"
+#include "AdjacencyList/driver.hpp"
+#include "AdjacencyMatrix/driver.hpp"
+#include "UnionFind/driver.hpp"
+#include "StandardTrie/driver.hpp"
+#include "HashTables/driver.hpp"
+#include "QueueCircularArray/driver.hpp"
+#include "ArrayVector/driver.hpp"
+#include "AVLTree/driver.hpp"
+#include "SearchTree/driver.hpp"
+#include "List/driver.hpp"
 
 using namespace std;
 

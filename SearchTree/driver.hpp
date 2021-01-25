@@ -6,8 +6,8 @@ with functions find, insert, erase, and more.
 
 */
 
-#include "SearchTree.h"
-#include "../Entry.h"
+#include "SearchTree.hpp"
+#include "../Entry.hpp"
 
 using namespace std;
 

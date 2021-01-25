@@ -16,7 +16,7 @@
 
 #include <iostream>
 #include <string>
-#include "AdjacencyMatrixGraph.h"
+#include "AdjacencyMatrixGraph.hpp"
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 #ifndef SearchTree_H
 #define SearchTree_H
 
-#include "LinkedBinaryTree.h"
+#include "LinkedBinaryTree.hpp"
 
 //Binary Search Tree
 template < typename E >

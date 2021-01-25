@@ -2,7 +2,7 @@
 
 #include <string>
 #include <vector>
-#include "../Entry.h"
+#include "../Entry.hpp"
 
 using namespace std;
 

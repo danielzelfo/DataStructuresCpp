@@ -15,7 +15,7 @@
 
 #include <iostream>
 #include <string>
-#include "AdjacencyListGraph.h"
+#include "AdjacencyListGraph.hpp"
 
 using namespace std;
 
